@@ -29,6 +29,10 @@ const cardsData = [
   {
     question: 'Lorem 30',
     answer: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos laborum sapiente magnam, est error sint dolore, hic laudantium suscipit quo inventore ipsum natus? Officiis numquam repudiandae cumque facilis sunt porro.'
+  },
+  {
+    question: 'Lorem 40',
+    answer: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos laborum sapiente magnam, est error sint dolore, hic laudantium suscipit quo inventore ipsum natus? Officiis numquam repudiandae cumque facilis sunt porro.'
   }
 ];
 
@@ -74,7 +78,7 @@ function createCard(data, index) {
 
   cardsEl.push(card);
   cardsContainer.appendChild(card);
-  
+
   //  Update pagination
   updateCurrentText()
 
@@ -88,3 +92,30 @@ function updateCurrentText() {
 }
 
 createCards();
+
+// Event listners for next and previous button (Slider)
+
+nextBtn.addEventListener('click', () => {
+  cardsEl[currentActiveCard].className = 'card left';
+  currentActiveCard += 1; 
+
+  if(currentActiveCard > cardsEl.length - 1 ){
+    currentActiveCard = cardsEl.length - 1;
+  }
+
+  cardsEl[currentActiveCard].className = 'card active';
+
+  updateCurrentText();
+})
+prevBtn.addEventListener('click', () => {
+  cardsEl[currentActiveCard].className = 'card right';
+  currentActiveCard -= 1; 
+
+  if(currentActiveCard < 0 ){
+    currentActiveCard = 0;
+  }
+
+  cardsEl[currentActiveCard].className = 'card active';
+
+  updateCurrentText();
+})
